@@ -1,3 +1,3 @@
 # contactListTestWork
-Архив с исполняемым файлом - \Dist\Run.zip
+Архив с исполняемым файлом - \dist\Run.zip
 Запускать файл Run
