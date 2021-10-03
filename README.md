@@ -1,3 +1,3 @@
 # contactListTestWork
-Архив с исполняемым файлом - \dist\Run.zip
+Архив с исполняемым файлом для mac os - \dist\Run.zip
 Запускать файл Run
