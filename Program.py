@@ -10,6 +10,7 @@ contact_list_csv = "contact_list.csv"
 
 # Создание нового контакта и запись его в csv файл
 def create_contact():
+    print("Для того чтобы пропустить пункт и оставить его пустым введите: _")
     new_contact = Contact("", "", "", "", "", "")
 
     # Ввод имени
@@ -92,6 +93,38 @@ def show_contact_list():
         print(contact)
 
 
+# Поиск по имени
+def find_by_first_name(name):
+    regex = r"(?i)\b{}".format(name)
+    counter = 0
+    for contact in contact_list:
+        if re.search(regex, contact.first_name):
+            print(contact)
+            counter += 1
+    print("Найдено: {}".format(counter))
+
+
+# Поиск по фамилии
+def find_by_last_name(name):
+    regex = r"(?i)\b{}".format(name)
+    counter = 0
+    for contact in contact_list:
+        if re.search(regex, contact.last_name):
+            print(contact)
+            counter += 1
+    print("Найдено: {}".format(counter))
+
+
+# Полная очистка списка контактов/восстановление contact_list.csv
+def clear_contact_list():
+    with open(contact_list_csv, "w", newline="") as file:
+        columns = ["first name", "last name", "birth date", "company name", "email", "phone number"]
+        data_writer = csv.DictWriter(file, fieldnames=columns)
+        data_writer.writeheader()
+    contact_list.clear()
+    print("Файл contact_list.csv был сброшен, список контактов очищен.")
+
+
 # Вызов команд для работы со списком контактов
 def command_dialog():
     print("help - для вызова справки")
@@ -114,41 +147,6 @@ def command_dialog():
             print("Список команд:\nshow - показать список контактов\ncreate - добавить контакт\n"
                   "find_fn - поиск по имени\nfind_ln - поиск по фамилии\nclear - полная очистка списка контактов\n"
                   "quit - выйти из программы\nhelp - справка")
-
-
-# Поиск по имени
-def find_by_first_name(name):
-    regex = r"\b{}".format(name)
-    counter = 0
-    for contact in contact_list:
-        if re.search(regex, contact.first_name):
-            print(contact)
-            counter += 1
-    print("Найдено: {}".format(counter))
-
-
-# Поиск по фамилии
-def find_by_last_name(name):
-    regex = r"\b{}".format(name)
-    counter = 0
-    for contact in contact_list:
-        if re.search(regex, contact.last_name):
-            print(contact)
-            counter += 1
-    print("Найдено: {}".format(counter))
-
-
-# Полная очистка списка контактов/восстановление contact_list.csv
-def clear_contact_list():
-    with open(contact_list_csv, "w", newline="") as file:
-        columns = ["first name", "last name", "birth date", "company name", "email", "phone number"]
-        data_writer = csv.DictWriter(file, fieldnames=columns)
-        data_writer.writeheader()
-    contact_list.clear()
-    print("Файл contact_list.csv был сброшен, список контактов очищен.")
-
-
-
 
 
 
